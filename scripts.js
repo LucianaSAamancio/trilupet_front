@@ -5,14 +5,14 @@
 */
 const getList = async () => {
   
-  /*let url = 'http://127.0.0.1:5000/servico';*/
-  let url = 'http://192.168.0.17:5000/servico';
+  let url = 'http://127.0.0.1:5000/servico';
+  /*let url = 'http://192.168.0.17:5000/servico';*/
   fetch(url, {
     method: 'get',
   })
     .then((response) => response.json())
     .then((data) => {
-      data.servicos.forEach(item => insertList(item.servico, item.tipoDeServico, item.valorDoServico, item.contato, item.maisInformacoes))
+      data.servicos.forEach(item => insertList(item.nome, item.tipoDeServico, item.valorDoServico, item.contato, item.maisInformacoes))
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -40,8 +40,8 @@ const postItem = async (inputService, inputTypeService, inputPriceService, input
   formData.append('contato', inputContact);
   formData.append('mais informacoes', inputMoreInformation);
 
-  /*let url = 'http://127.0.0.1:5000/servico';*/
-  let url = 'http://192.168.0.17:5000/servico';
+  let url = 'http://127.0.0.1:5000/servico';
+  /*let url = 'http://192.168.0.17:5000/servico';*/
   fetch(url, {
     method: 'post',
     body: formData
@@ -119,9 +119,9 @@ const newItem = () => {
   let inputContact = document.getElementById("newContact").value;
   let inputMoreInformation = document.getElementById("newMoreInformation").value;
 
-  if (inputProduct === '') {
+  if (inputService === '') {
     alert("Escreva o nome do serviço!");
-  } else if (isNaN(inputPrice) || isNaN(inputContact)) {
+  } else if (isNaN(inputPriceService) || isNaN(inputContact)) {
     alert("Valor do serviço e Contato precisam ser números!");
   } else {
     insertList(inputService, inputTypeService, inputPriceService, inputContact, inputMoreInformation)
@@ -135,9 +135,9 @@ const newItem = () => {
   Função para inserir items na lista apresentada
   --------------------------------------------------------------------------------------
 */
-const insertList = (nameService, typeService, priceService, contact, moreInformation) => {
-  var item = [nameService, typeService, priceService, contact, moreInformation]
-  var table = document.getElementById('myTableService');
+const insertList = (inputService, inputTypeService, inputPriceService, inputContact, inputMoreInformation) => {
+  var item = [inputService, inputTypeService, inputPriceService, inputContact, inputMoreInformation]
+  var table = document.getElementById('myTable');
   var row = table.insertRow();
 
   for (var i = 0; i < item.length; i++) {

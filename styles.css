@@ -14,11 +14,14 @@ header {
     position: relative;
     width: 100%;
 }
-
+.container {
+    display: flex;
+    height: 100vh; /* ocupa toda a altura da tela */
+}
 .title {
     color: white;
     width: 100%;
-    background-color: rgb(35, 32, 24);
+    background-color: #D54745
     display: inline-block;
     padding: 2px 0px;
     position: sticky;
@@ -26,13 +29,29 @@ header {
 }
 
 .banner {
-    height: 500px;
-    overflow: hidden;
+    width: 400px;
+    background-color: #6DC284;
+    color: white;
+    padding: 30px;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .banner img {
-    margin: 0px 0px 0px 0px;
-    width: 20%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* garante que a imagem não ultrapasse a div */
+}
+.content {
+    flex: 1;
+    padding: 20px;
+    align-items:end;
+}
+h1 {
+    text-align: center;
 }
 
 .newItem {
